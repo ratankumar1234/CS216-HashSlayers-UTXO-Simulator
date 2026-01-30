@@ -4,7 +4,7 @@
 
 ## 👥 Team Details
 
-###Team Name: HashSlayers###
+**Team Name: HashSlayers**
 
 | Name                 | Roll Number | Role         |
 
