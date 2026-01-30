@@ -3,12 +3,17 @@
 ### CS 216: Introduction to Blockchain | Assignment 1
 
 ## 👥 Team Details
+
 Team Name: HashSlayers
+
 | Name                 | Roll Number | Role         |
+
 | RAGHAV SHARMA        | 240001056   | Group Leader |
 
 | ROHAN CHAUHAN        | 240001061   | Memeber      |
+
 | ABHISHEK KUMAR VERMA | 240001005   | Member       |
+
 | RATAN KUMAR          | 240001059   | Member       |
 
 ---
