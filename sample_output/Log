@@ -1,0 +1,119 @@
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+ idx: 0)
+Bob: 30.0 BTC (tx: genesis, idx: 1)
+Charlie: 20.0 BTC (tx: genesis, idx: 2)
+David: 10.0 BTC (tx: genesis, idx: 3)
+Eve: 5.0 BTC (tx: genesis, idx: 4)
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 3
+
+Mempool: 0 transactions.
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 1
+Enter sender: Bob
+Available balance: 30.0 BTC
+Enter recipient: David
+Enter amount: 11
+Transaction valid! Fee: 0.001 BTC
+Transaction ID: tx_1769788259_2118
+Transaction added to mempool.
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 3
+
+Mempool: 1 transactions.
+- tx_1769788259_2118: 1 inputs -> 2 outputs
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 4
+Enter miner name: Bob
+Miner Bob collected 0.0010000000000012221 BTC in fees.
+Block mined! 1 transactions confirmed.
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 4
+Enter miner name: Bob
+Mempool is empty. Nothing to mine.
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 2
+
+--- Current UTXOs ---
+Alice: 50.0 BTC (tx: genesis, idx: 0)
+Charlie: 20.0 BTC (tx: genesis, idx: 2)
+David: 10.0 BTC (tx: genesis, idx: 3)
+Eve: 5.0 BTC (tx: genesis, idx: 4)
+David: 11.0 BTC (tx: tx_1769788259_2118, idx: 0)
+Bob: 18.999 BTC (tx: tx_1769788259_2118, idx: 1)
+Bob: 0.0010000000000012221 BTC (tx: coinbase_tx_1769788278_5016, idx: 0)
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 3
+
+Mempool: 0 transactions.
+
+=== Bitcoin Transaction Simulator ===
+1. Create new transaction
+2. View UTXO set
+3. View mempool
+4. Mine block
+5. Run test scenarios
+6. Exit
+Enter choice: 2
+
+--- Current UTXOs ---
+Alice: 50.0 BTC (tx: genesis, idx: 0)
+Charlie: 20.0 BTC (tx: genesis, idx: 2)
+David: 10.0 BTC (tx: genesis, idx: 3)
+Eve: 5.0 BTC (tx: genesis, idx: 4)
+David: 11.0 BTC (tx: tx_1769788259_2118, idx: 0)
+Bob: 18.999 BTC (tx: tx_1769788259_2118, idx: 1)
+Bob: 0.0010000000000012221 BTC (tx: coinbase_tx_1769788278_5016, idx: 0)
