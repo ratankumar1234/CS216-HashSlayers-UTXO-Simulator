@@ -19,8 +19,6 @@ class Mempool:
             self.transactions.remove(tx)
             # We don't remove from spent_utxos here because they are now
             # permanently spent in the blockchain (UTXOManager).
-            # The set can be cleared or managed differently depending on full implementation,
-            # but for this sim, clearing inputs happens when the block is confirmed.
             
     def clear_mined_utxos(self, tx_list):
         """
