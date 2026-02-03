@@ -24,10 +24,14 @@ int main() {
     initialize_genesis(utxo_mgr);
 
     int choice;
-    while (true) { 
-        cout << "\n=== Bitcoin Transaction Simulator ===\n";
+        cout << "\n=== Bitcoin Transaction Simulator ===\n";cout<<endl;
         cout << "Initial UTXOs (Genesis Block):\n";
-        cout << "Alice: 50.0 BTC, Bob: 30.0 BTC, Charlie: 20.0 BTC, David: 10.0 BTC, Eve: 5.0 BTC\n\n";
+        cout << "Alice: 50.0 BTC, Bob: 30.0 BTC, Charlie: 20.0 BTC, David: 10.0 BTC, Eve: 5.0 BTC\n";
+
+    while (true) { 
+        cout<<endl;
+        cout<<"========================================"<<endl;
+        cout<<endl;
         cout << "Main Menu:\n";
         cout << "1. Create new transaction\n";
         cout << "2. View UTXO set\n";
@@ -36,6 +40,8 @@ int main() {
         cout << "5. Run test scenarios\n";
         cout << "6. Exit\n";
         cout << "Enter choice: ";
+        cout<<endl;
+
         cin >> choice;
         if (choice == 6) break;
         switch (choice) {
@@ -98,6 +104,7 @@ int main() {
                 break;
             }
             case 5: {  
+                cout<<endl;
                 cout << "Please run 'test_scenarios.cpp' to verify all 10 mandatory cases.\n";
                 break;
             }
