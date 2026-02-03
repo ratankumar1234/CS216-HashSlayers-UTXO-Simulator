@@ -4,7 +4,6 @@
 #include <ctime>
 #include "block.cpp"
 using namespace std;
- 
 void initialize_genesis(UTXOManager& mgr) {
     mgr.add_utxo("genesis", 0, 50.0, "Alice");
     mgr.add_utxo("genesis", 1, 30.0, "Bob");
@@ -26,7 +25,7 @@ int main() {
     int choice;
         cout << "\n=== Bitcoin Transaction Simulator ===\n";cout<<endl;
         cout << "Initial UTXOs (Genesis Block):\n";
-        cout << "Alice: 50.0 BTC, Bob: 30.0 BTC, Charlie: 20.0 BTC, David: 10.0 BTC, Eve: 5.0 BTC\n";
+        cout << "Alice: 50.0 BTC"<<endl<<"Bob: 30.0 BTC"<<endl<<"Charlie: 20.0 BTC"<<endl<<"David: 10.0 BTC"<<endl<<"Eve: 5.0 BTC\n";
 
     while (true) { 
         cout<<endl;
