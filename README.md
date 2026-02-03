@@ -9,7 +9,7 @@
 
 | Name | Roll Number |
 |------|------------|
-| Raghav Sharma | 240001056 | Leader
+| Raghav Sharma (Leader) | 240001056 | 
 | Rohan Chauhan | 240001061 |
 | Abhishek Kumar Verma | 240001005 |
 | Ratan Kumar | 240001059 |
