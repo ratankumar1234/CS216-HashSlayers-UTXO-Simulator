@@ -72,7 +72,7 @@ No external libraries are required.
 
 ---
 ## To Clone locally,just open folder in Terminal and paste below line:
-git clone https://github.com/ratankumar1234/CS216-HashSlayers-UTXO-Simulator.git
+( git clone https://github.com/ratankumar1234/CS216-HashSlayers-UTXO-Simulator.git )
 ---
 
 ## ▶️ Compile and Run the Simulator
