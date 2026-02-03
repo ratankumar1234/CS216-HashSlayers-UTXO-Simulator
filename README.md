@@ -71,8 +71,10 @@ The simulator follows Bitcoin’s transaction lifecycle:
 No external libraries are required.
 
 ---
-## To Clone locally,just open folder in Terminal and paste below line:
-( git clone https://github.com/ratankumar1234/CS216-HashSlayers-UTXO-Simulator.git )
+### 🔹 Clone the Repository
+```
+git clone https://github.com/ratankumar1234/CS216-HashSlayers-UTXO-Simulator.git
+```
 ---
 
 ## ▶️ Compile and Run the Simulator
@@ -115,7 +117,8 @@ Test 10 Passed: Unconfirmed Chain (Reject simple approach)
 All 10 Mandatory Tests Passed!
 📂 Project Structure
 ├── README.md
-├── test_scenarios.cpp
+├── test/
+    ├── test_scenarios.cpp
 └── src/
     ├── main.cpp
     ├── block.cpp
