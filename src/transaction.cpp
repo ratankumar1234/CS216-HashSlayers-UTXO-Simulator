@@ -15,7 +15,7 @@ struct Output {
 };
 struct Transaction {
     string tx_id;   
-    vector<Input> inputs;
+    vector<Input> inputs ;
     vector<Output> outputs;
     double fee;     
 };

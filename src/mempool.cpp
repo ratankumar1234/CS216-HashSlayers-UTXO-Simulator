@@ -18,7 +18,7 @@ public:
             }
             return true;
         }
-        cout << "Rejected: " << error << endl;
+        cout << "Rejected : " << error << endl;
         return false;
     }
     void clear_mempool() {
