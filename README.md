@@ -112,9 +112,9 @@ Test 10 Passed: Unconfirmed Chain (Reject simple approach)
 All 10 Mandatory Tests Passed!
 📂 Project Structure
 ├── README.md
-├── main.cpp
 ├── test_scenarios.cpp
 └── src/
+    ├── main.cpp
     ├── block.cpp
     ├── mempool.cpp
     ├── transaction.cpp
