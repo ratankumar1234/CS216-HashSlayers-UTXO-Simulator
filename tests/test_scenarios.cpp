@@ -3,24 +3,59 @@
 
 #include <iostream>
 #include <string>
-#include <cassert>
+#include <vector>
 #include "../src/block.cpp"
 
 using namespace std;
 
-// This function acts as a dispatcher for individual test scenarios [cite: 270-306, 538]
 void run_specific_test(int choice, UTXOManager& mgr, Mempool& mp) {
     cout << "\nRunning test scenario " << choice << "...\n";
 
     switch (choice) {
-        case 1: { // Test 1: Basic Valid Transaction [cite: 271-274]
+        case 1: { // Test 1: Basic Valid Transaction
             cout << "Test: Alice sends 10 BTC to Bob\n";
             Transaction tx = {"tx1", {{"genesis", 0, "Alice"}}, {{10.0, "Bob"}, {39.999, "Alice"}}, 0.001};
             if(mp.add_transaction(tx, mgr)) cout << "Result: VALID and ADDED\n";
             break;
         }
-        case 2: // Generic Double-spend logic [cite: 255-262]
-        case 4: { // Test 4: Mempool Double-Spend [cite: 282-285, 467-473]
+
+        // --- FIXED TEST 2 ---
+        case 2: { // Test 2: Multiple Inputs 
+            cout << "Test: Alice spends two UTXOs (50 + 20) to send 60 BTC\n";
+            mgr.add_utxo("dummy_funding", 0, 20.0, "Alice"); 
+
+            Transaction tx;
+            tx.tx_id = "tx_multi_input"; 
+            tx.inputs = { {"genesis", 0, "Alice"}, {"dummy_funding", 0, "Alice"} };
+             
+            tx.outputs = { {60.0, "Bob"}, {9.999, "Alice"} };
+            tx.fee = 0.001;
+
+            if(mp.add_transaction(tx, mgr)) {
+                cout << "Result: VALID. Inputs aggregated (50+20=70) to cover output (60)\n";
+            } else {
+                cout << "Result: FAILED\n";
+            }
+            break;
+        }
+
+        case 3: {  
+            cout << "Test: Transaction tries to use same input (genesis:0) twice\n"; 
+            Transaction tx = {
+                "tx3", 
+                {{"genesis", 0, "Alice"}, {"genesis", 0, "Alice"}},  
+                {{10.0, "Bob"}}, 
+                0.0
+            };
+            if(!mp.add_transaction(tx, mgr)) {
+                cout << "Result: REJECTED (Correct) - Double-spend in same TX detected.\n";
+            } else {
+                cout << "Result: FAILED - System incorrectly accepted the transaction.\n";
+            }
+            break;
+        }
+
+        case 4: { // Mempool Double-Spend
             cout << "Test: Alice tries to spend same UTXO twice in different transactions\n";
             Transaction tx1 = {"tx1", {{"genesis", 0, "Alice"}}, {{10.0, "Bob"}, {39.999, "Alice"}}, 0.001};
             mp.add_transaction(tx1, mgr);
@@ -31,35 +66,32 @@ void run_specific_test(int choice, UTXOManager& mgr, Mempool& mp) {
             if (!mp.add_transaction(tx2, mgr)) cout << "REJECTED (Correct)\n";
             break;
         }
-        case 3: { // Test 3: Double-Spend in Same Transaction [cite: 279-281]
-            cout << "Test: Transaction tries to use same input twice\n";
-            Transaction tx = {"tx3", {{"genesis", 0, "Alice"}, {"genesis", 0, "Alice"}}, {{10.0, "Bob"}}, 0.0};
-            cout << "Result: ";
-            if(!mp.add_transaction(tx, mgr)) cout << "REJECTED (Correct)\n";
-            break;
-        }
-        case 5: { // Test 5: Insufficient Funds [cite: 286-288]
+
+        case 5: { // Insufficient Funds
             cout << "Test: Bob sends 35 BTC while having only 30 BTC\n";
             Transaction tx = {"tx5", {{"genesis", 1, "Bob"}}, {{35.0, "Alice"}}, 0.0};
             cout << "Result: ";
             if(!mp.add_transaction(tx, mgr)) cout << "REJECTED (Correct)\n";
             break;
         }
-        case 6: { // Test 6: Negative Amount [cite: 289-291]
+
+        case 6: { // Negative Amount
             cout << "Test: Output amount is -5 BTC\n";
             Transaction tx = {"tx6", {{"genesis", 3, "David"}}, {{-5.0, "Eve"}}, 0.0};
             cout << "Result: ";
             if(!mp.add_transaction(tx, mgr)) cout << "REJECTED (Correct)\n";
             break;
         }
-        case 7: { // Test 7: Zero Fee Transaction [cite: 292-294]
+
+        case 7: { // Zero Fee
             cout << "Test: Inputs = Outputs (Zero Fee)\n";
             Transaction tx = {"tx7", {{"genesis", 4, "Eve"}}, {{5.0, "Alice"}}, 0.0};
             cout << "Result: ";
             if(mp.add_transaction(tx, mgr)) cout << "ACCEPTED (Correct)\n";
             break;
         }
-        case 8: { // Test 8: Race Attack (First-Seen Rule) [cite: 295-301, 465-474]
+
+        case 8: { // Race Attack
             cout << "Test: High fee TX tries to replace already-seen low fee TX\n";
             Transaction tx_low = {"low_fee", {{"genesis", 0, "Alice"}}, {{10.0, "Bob"}, {39.999, "Alice"}}, 0.001};
             mp.add_transaction(tx_low, mgr);
@@ -70,7 +102,8 @@ void run_specific_test(int choice, UTXOManager& mgr, Mempool& mp) {
             if(!mp.add_transaction(tx_high, mgr)) cout << "REJECTED (First-seen rule correctly enforced)\n";
             break;
         }
-        case 9: { // Test 9: Complete Mining Flow [cite: 302-305, 478-491]
+
+        case 9: { // Mining Flow
             cout << "Test: Full lifecycle from creation to confirmation\n";
             Transaction tx = {"tx9", {{"genesis", 1, "Bob"}}, {{10.0, "Alice"}, {19.999, "Bob"}}, 0.001};
             mp.add_transaction(tx, mgr);
@@ -78,7 +111,8 @@ void run_specific_test(int choice, UTXOManager& mgr, Mempool& mp) {
             Block::mine_block("Miner1", mp, mgr);
             break;
         }
-        case 10: { // Test 10: Unconfirmed Chain [cite: 306-310, 421-424]
+
+        case 10: { // Unconfirmed Chain
             cout << "Test: Spending a UTXO that is in mempool but not yet mined\n";
             Transaction tx_p = {"parent", {{"genesis", 0, "Alice"}}, {{10.0, "Bob"}, {39.9, "Alice"}}, 0.1};
             mp.add_transaction(tx_p, mgr);
@@ -88,6 +122,7 @@ void run_specific_test(int choice, UTXOManager& mgr, Mempool& mp) {
             if(!mp.add_transaction(tx_c, mgr)) cout << "REJECTED (Simulator chooses simple reject approach)\n";
             break;
         }
+
         default:
             cout << "Invalid Test Selection.\n";
     }
